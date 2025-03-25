@@ -7,17 +7,13 @@
     pageEncoding="UTF-8"%>
     <%!
 	Connection conn = null;
-    //쿼리문 이용을 위한 인터페이스
     Statement stmt=null;
-    //쿼리 결과를 받기 위한  인터페이스
     ResultSet rs = null;
     
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "scott";
 	String password = "tiger";
-	//String sql : 조회쿼리 oracle에서 확인하고 가지고 와야한다. 세미콜론
 	String sql = "select empno, ename, job,mgr,hiredate,sal,comm,deptno from emp";
-	//String sql = "select * from emp";
     %>
 <html>
 <head>
@@ -37,15 +33,11 @@
 		<td>부서번호</td>
 	</tr>
 	<%
-	//쿼리결과가 나오는곳
-	//druvermanager 임포트
 	try{
 		conn = DriverManager.getConnection(url, user, password);
 		stmt = conn.createStatement();
-		//쿼리 결과는  ResultSet 으로담는다
 		rs = stmt.executeQuery(sql);
 		
-		//next() : 쿼리 결과가 있으면 참
 		while(rs.next()){
 			%>
 			<tr>
